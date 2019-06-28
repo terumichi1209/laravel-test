@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Services\UserService;
 use Illuminate\View\View;
 
 class UserController extends Controller
@@ -12,6 +12,7 @@ class UserController extends Controller
      */
     public function index(): View
     {
-        return view('user.list');
+        $users = (new UserService())->list();
+        return view('user.list', ['users' => $users]);
     }
 }
